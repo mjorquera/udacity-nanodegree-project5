@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name flightApp.controller:FlightCtrl
+ * @name flightApp.controller:AirportCtrl
  * @description
- * # FlightCtrl
+ * # AirportCtrl
  * Controller of the flightApp
  */
 angular.module('flightApp')
-  .controller('FlightCtrl',['airportFinder', function (airportService) {
+  .controller('AirportCtrl',['airportFinder', function (airportService) {
     var vm = this;
 
     vm.mapcenter = {

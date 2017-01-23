@@ -16,6 +16,7 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <link rel="stylesheet" href="styles/font-awesome.min.css">
   </head>
   <body ng-app="flightApp">
     <!--[if lte IE 8]>
@@ -27,24 +28,7 @@
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
-
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-            <a class="navbar-brand" href="#/">flight</a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
-            </ul>
+            <a class="navbar-brand" href="/">FlightApp</a>
           </div>
         </div>
       </div>
@@ -79,6 +63,7 @@
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/flight.js"></script>
     <script src="scripts/services/aiportfinder.js"></script>
+    <script src="scripts/controllers/airport.js"></script>
     <!-- endbuild -->
 </body>
 </html>

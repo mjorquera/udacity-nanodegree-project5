@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-sm-6">
+        <form>
+            <div class="form-group">
+                <label><span ng-hide="airport.countries"><fa name="refresh" spin></fa></span> Country</label>
+                <select class="form-control" ng-model="airport.selectedCountry" ng-change="airport.selectCountry()">
+                    <option value="" disabled selected>(Select Country)</option>
+                    <option ng-repeat="option in airport.countries | orderBy: 'name'" ng-value="option.code">{{option.name}}</option>
+                </select>
+                
+            </div>
+            <div class="form-group">
+                <label><span ng-show="!airport.airports && airport.selectedCountry"><fa name="refresh" spin></fa></span> Airport</label>
+                <select class="form-control" ng-model="airport.selectedAirportCode" ng-disabled="!airport.selectedCountry" ng-change="airport.selectAirport()">
+                    <option value="" disabled selected>(Select Airport)</option>
+                    <option ng-repeat="option in airport.airports | orderBy: 'name'" ng-value="option.iata">{{option.name}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-6" ng-show="airport.selectedAirportCode">
+        <table class="table table-striped table-condensed table-bordered">
+            <tr>
+                <th>Code</th>
+                <td>{{airport.selectedAirport.iata}}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{airport.selectedAirport.name}}</td>
+            </tr>
+            <tr>
+                <th>Lat</th>
+                <td>{{airport.selectedAirport.lat}}</td>
+            </tr>
+            <tr>
+                <th>Lon</th>
+                <td>{{airport.selectedAirport.lon}}</td>
+            </tr>
+            <tr>
+                <th>Size</th>
+                <td>{{airport.selectedAirport.size}}</td>
+            </tr>
+        </table>
+        <div class="text-center">
+            <a ui-sref="flights">View departure fligths</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <leaflet center="airport.mapcenter" markers="airport.markers" height="480px" style="width:100%"></leaflet>
+    </div>
+</div>
