@@ -1,1 +1,43 @@
-<p>This is the flights view.</p>
+<div class="row">
+    <div class="col-sm-6">
+        <form>
+            <div class="form-group">
+                <fa name="refresh"></fa>
+                <label>Country</label>
+                <select class="form-control" ng-model="flight.selectedCountry" ng-change="flight.selectCountry()">
+                    <option value="" disabled selected>(Select Country)</option>
+                    <option ng-repeat="option in flight.countries | orderBy: 'name'" ng-value="option.code">{{option.name}}</option>
+                </select>
+                <span ng-hide="flight.countries && flight.countries.lenght > 0"><fa name="refresh" spin></fa></span>
+            </div>
+            <div class="form-group">
+                <label>Airport</label>
+                <!--<select2 class="form-control" options="flight.queryAirports" ng-model="flight.selectedAirportCode" ng-change="flight.selectAirport(flight.selectedAirportCode)">
+                    <option value="" disabled selected>(Select Airport)</option>
+                </select2>-->
+                <select class="form-control" ng-model="flight.selectedAirportCode" ng-disabled="!flight.selectedCountry" ng-change="flight.selectAirport()">
+                    <option value="" disabled selected>(Select Airport)</option>
+                    <option ng-repeat="option in flight.airports | orderBy: 'name'" ng-value="option.iata">{{option.name}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-6" ng-show="flight.selectedAirportCode">
+        {{flight.selectedCountry.name}}
+        <dl class="dl-horizontal">
+            <dt>Code</dt>
+            <dd>{{flight.selectedAirport.iata}}</dd>
+            <dt>Name</dt>
+            <dd>{{flight.selectedAirport.name}}</dd>
+            <dt>Lat</dt>
+            <dd>{{flight.selectedAirport.lat}}</dd>
+            <dt>Lon</dt>
+            <dd>{{flight.selectedAirport.lon}}</dd>
+        </dl>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <leaflet center="flight.mapcenter" markers="flight.markers" height="480px" style="width:100%"></leaflet>
+    </div>
+</div>

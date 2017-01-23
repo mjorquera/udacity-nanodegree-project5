@@ -2,15 +2,25 @@
 
 /**
  * @ngdoc service
- * @name flightApp.aiportFinder
+ * @name flightApp.airportFinder
  * @description
- * # aiportFinder
+ * # airportFinder
  * Service in the flightApp.
  */
 angular.module('flightApp')
-  .service('aiportFinder', ['$indexedDB', function () {
+  .service('airportFinder', ['$indexedDB', function ($indexedDB) {
     // AngularJS will instantiate a singleton by calling "new" on this function
-    this.getAirports = function() {
-      return $.get( '/data/airports.json' );
+    this.getCountries = function() {
+      return $.get( '/data/countries.json' );
+    };
+
+    this.getAirports = function(countryCode) {
+      console.log("country code: " + countryCode);
+      return $.get('/data/airports.json').then(function(data){
+        console.log(data);
+          return data.filter(function(obj){
+            return obj.iso == countryCode && obj.name != null;
+          })
+      });
     };
   }]);

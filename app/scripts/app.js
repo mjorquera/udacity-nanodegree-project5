@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('flightApp', ['ui.router','leaflet-directive','picardy.fontawesome','indexedDB'])
+  .module('flightApp', ['ui.router','leaflet-directive','picardy.fontawesome','indexedDB','rt.select2'])
   .config(['$stateProvider', '$urlRouterProvider','$indexedDBProvider', function($stateProvider, $urlRouterProvider, $indexedDBProvider){
     $urlRouterProvider.otherwise('/');
 
@@ -20,13 +20,13 @@ angular
         controller: 'FlightCtrl as flight'
       });
 
-    $indexedDBProvider
-      .connection('flight-app')
-      .upgradeDatabase(1, function(event, db, tx){
-        console.log(db);
-        // TODO: add objectstore
-        // var objStore = db.createObjectStore('stations', {autoIncrement: true});
-        // objStore.createIndex('code_idx', 'station_code', {unique: true});
+    // $indexedDBProvider
+    //   .connection('flight-app')
+    //   .upgradeDatabase(1, function(event, db, tx){
+    //     console.log(db);
+    //     // TODO: add objectstore
+    //     // var objStore = db.createObjectStore('stations', {autoIncrement: true});
+    //     // objStore.createIndex('code_idx', 'station_code', {unique: true});
 
-      });
+    //   });
   }]);
