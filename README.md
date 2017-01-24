@@ -28,22 +28,18 @@ Open a web browser and go to [http://localhost:9000](http://localhost:9000)
 
 ## 2. Usage
 
-### Select Flight
-The application is builded in way that only selecting the departure station it shows the next
-trains to departure in that station. (This is because the API used gives that funcionality)
-
 ### Select Airport
-First select a departure station, and then a destination, the will show the trains that make that route.
-If there is no train it will show up a message.
+First select a country, and then an airport, the app will show the basic data of the airport,
+the map will be updated, and a link will show up to see the flights departuring from that airport.
 
-### Testing Offline First
-
-1. Charge a page and test a functionality in order to populate the de DB
-2. Disconnect the internet or do it on DevTools > Application > Service Workers > Offline
-3. Select a Departure Station (Offline funcionality works only selecting the departure station)
+### Select Flight
+After selecting an airport the app will a list of flights that departures from that airport, in a range of two hours.
+Select a Flight and detailed information will show, also the map will show the two airports.
 
 ## 3. Extras
 
 * Map by Leaflet & OpenStreetMap: http://tombatossals.github.io/angular-leaflet-directive/#!/
 * Angular Font Awesome: https://github.com/picardy/angular-fontawesome
+* Flights API by FlightStats: https://developer.flightstats.com/
+* Airline logos: http://support.wan.travel/hc/en-us/sections/200114344-Wego-API
 * Angular indexed db: https://github.com/bramski/angular-indexedDB

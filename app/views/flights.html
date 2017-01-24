@@ -41,10 +41,39 @@
     </div>
     <div class="col-sm-5">
         <leaflet center="flights.mapcenter" markers="flights.markers" paths="flights.paths" bounds="flights.bounds" height="480px" style="width:100%"></leaflet>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12">
-        
+        <div ng-show="flights.selectedFlight" class="margin-top">
+            <h4>
+                <img class="airline-logo" ng-src="http://0.omg.io/wego/image/upload/c_fit,w_200,h_70/flights/airlines_rectangular/{{flights.selectedFlight.carrierFsCode}}.png" />
+                {{flights.selectedFlight.carrierFsCode + flights.selectedFlight.flightNumber}} to 
+                <small>({{flights.selectedFlight.arrivalAirportFsCode}})</small> {{flights.getAirportAppendix(flights.selectedFlight.arrivalAirportFsCode).city}}, {{flights.getAirportAppendix(flights.selectedFlight.arrivalAirportFsCode).countryName}}
+            </h4>
+            <hr>
+            <table class="table table-striped table-condensed table-bordered">
+            <tr>
+                <th>Status</th>
+                <td><span class="label" ng-class="flights.getStatusClass(flights.selectedFlight.status)">{{flights.selectedFlight.status | flightStatus}}</span></td>
+            </tr>
+            <tr>
+                <th>Departure</th>
+                <td>{{flights.selectedFlight.departureDate.dateLocal | date: "hh:mma"}}</td>
+            </tr>
+            <tr>
+                <th>Arrival</th>
+                <td>{{flights.selectedFlight.arrivalDate.dateLocal | date: "hh:mma"}}</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{{flights.selectedFlight.flightDurations.scheduledBlockMinutes | minHour}}</td>
+            </tr>
+            <tr>
+                <th>Terminal</th>
+                <td>{{flights.selectedFlight.airportResources.departureTerminal || "-"}}</td>
+            </tr>
+            <tr>
+                <th>Gate</th>
+                <td>{{flights.selectedFlight.airportResources.arrivalTerminal || "-"}}</td>
+            </tr>
+        </table>
+        </div>
     </div>
 </div>
