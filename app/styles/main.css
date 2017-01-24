@@ -80,3 +80,32 @@ body {
     border-bottom: 0;
   }
 }
+
+.margin-bottom{
+  margin-bottom: 20px;
+}
+
+.margin-top{
+  margin-top: 20px;
+}
+
+.margin-top-2x{
+  margin-top: 40px;
+}
+
+.margin-top-3x{
+  margin-top: 60px;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+ .angular-leaflet-map svg{
+   width: initial;
+   height: initial;
+ }
+
+ .airline-logo{
+   max-width: 50px;
+ }

@@ -41,8 +41,8 @@
                 <td>{{airport.selectedAirport.size}}</td>
             </tr>
         </table>
-        <div class="text-center">
-            <a ui-sref="flights">View departure fligths</a>
+        <div class="text-center margin-bottom">
+            <a class="btn btn-xs btn-primary" ui-sref="flights({airportId: airport.selectedAirport.iata})"><fa name="plane"></fa> View departure fligths</a>
         </div>
     </div>
 </div>

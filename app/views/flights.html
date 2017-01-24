@@ -1,11 +1,50 @@
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-12">
+        <h3>Departure Flights for <b>{{ flights.airport.name }}</b> <small>{{flights.airportId}}</small></h3>
+        <hr>
+    </div> 
+</div>
+<div class="row">
+    <div class="col-sm-7">
+        <h4><fa name="plane"></fa> Departures</h4>
+        <div ng-show="flights.flightResults" class="pull-right"><small>{{flights.yearQuery}}/{{flights.monthQuery}}/{{flights.dayQuery}} from {{flights.hourQuery}} to {{flights.hourQuery + 2}}</small></div>
+        <div ng-hide="flights.flightResults" class="text-center margin-top-3x"><fa name="refresh" size="4" spin></fa></div>
+        <table ng-show="flights.flightResults" class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Flight</th>
+                    <th>Operator</th>
+                    <th>Destination</th>
+                    <th>Departure</th>
+                    <th>Arrives at</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="pointer" ng-repeat="flightStatus in flights.flightResults.flightStatuses | orderBy: 'departureDate.dateLocal'" ng-click="flights.selectFlight(flightStatus.flightId)" ng-class="{'info': flightStatus.flightId == flights.selectedFlight.flightId}">
+                    <td><img class="airline-logo" ng-src="http://0.omg.io/wego/image/upload/c_fit,w_200,h_70/flights/airlines_rectangular/{{flightStatus.carrierFsCode}}.png" /></td>
+                    <td>{{flightStatus.carrierFsCode + flightStatus.flightNumber}}</td>
+                    <td>{{flights.getAirlineAppendix(flightStatus.carrierFsCode).name}}</td>
+                    <td><small>({{flightStatus.arrivalAirportFsCode}})</small> {{flights.getAirportAppendix(flightStatus.arrivalAirportFsCode).city}}</td>
+                    <td>{{flightStatus.departureDate.dateLocal | date: "hh:mma"}}</td>
+                    <td>{{flightStatus.arrivalDate.dateLocal | date: "hh:mma"}}</td>
+                    <td><small>{{flightStatus.flightDurations.scheduledBlockMinutes | minHour}}</small></td>
+                    <td class="text-center"><span class="label" ng-class="flights.getStatusClass(flightStatus.status)">{{flightStatus.status | flightStatus}}</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="text-center" ng-show="flights.flightResults.flightStatuses && flights.flightResults.flightStatuses.length == 0">
+            No flights found for the next hours. Please select other airport <a ui-sref="home">here</a>
+        </div>
     </div>
-    <div class="col-sm-6" ng-show="flight.selectedAirportCode">
+    <div class="col-sm-5">
+        <leaflet center="flights.mapcenter" markers="flights.markers" paths="flights.paths" bounds="flights.bounds" height="480px" style="width:100%"></leaflet>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <leaflet center="flight.mapcenter" markers="flight.markers" height="480px" style="width:100%"></leaflet>
+        
     </div>
 </div>

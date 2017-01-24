@@ -15,12 +15,18 @@ angular.module('flightApp')
     };
 
     this.getAirports = function(countryCode) {
-      console.log("country code: " + countryCode);
       return $.get('/data/airports.json').then(function(data){
-        console.log(data);
           return data.filter(function(obj){
             return obj.iso == countryCode && obj.name != null;
           })
+      });
+    };
+
+    this.getAirport = function(airportId) {
+      return $.get('/data/airports.json').then(function(data){
+          return data.filter(function(obj){
+            return obj.iata == airportId;
+          })[0]
       });
     };
   }]);

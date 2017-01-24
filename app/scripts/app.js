@@ -20,7 +20,7 @@ angular
         controller: 'AirportCtrl as airport'
       })
       .state('flights', {
-        url: '/flights/{airportId}',
+        url: '/flights/:airportId',
         templateUrl: 'views/flights.html',
         controller: 'FlightCtrl as flights'
       });
