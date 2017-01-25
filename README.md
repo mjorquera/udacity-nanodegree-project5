@@ -10,6 +10,11 @@ version 0.15.1.
 Download .zip file or clone this project.
 [https://github.com/mjorquera/udacity-nanodegree-project5.git](https://github.com/mjorquera/udacity-nanodegree-project5.git)
 
+### Install node dependencies
+```
+$ npm install
+```
+
 ### Restore bower packages
 ```
 $ bower install
